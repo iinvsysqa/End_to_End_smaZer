@@ -2,6 +2,7 @@ package pages;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -72,12 +73,15 @@ public class SmaZer_info_Page extends GenericWrappers{
 	@FindBy(xpath="//android.widget.TextView[@text=\"Large\"]")
 	private WebElement roomsizeoption3;
 	
-	@FindBy(xpath = "//android.widget.TextView[@text=\"geezer007_1\"]")
-	private WebElement devicenameDeviceSettingsPage;
+//	@FindBy(xpath = "//android.widget.TextView[@text=\"geezer007_1\"]")
+//	private WebElement devicenameDeviceSettingsPage;
 	
 	
 	
-	
+	private WebElement devicenameDeviceSettingsPage(String username) {
+		return driver.findElement(By.xpath("//android.widget.TextView[@text='"+username+"']"));
+		
+	}
 	
 
 	
@@ -168,8 +172,8 @@ public void clickonRoomSize() {
 }
 
 public void checkDefaultValues_Szephyrinfopage_afterpairing() {
-
-	verifyTextContainsByXpath(devicenameDeviceSettingsPage, loadProp("USERNAMEINAPP"),"device name" );
+	verifyTextContainsByXpath(devicenameDeviceSettingsPage(loadProp("USERNAMEINAPP")), loadProp("USERNAME"), "Dropdown of device name");
+//	verifyTextContainsByXpath(devicenameDeviceSettingsPage, loadProp("USERNAMEINAPP"),"device name" );
 	verifyTextContainsByXpath(Capacitytext, "8", "capacity value");
 }
 }

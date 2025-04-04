@@ -6,8 +6,8 @@
       <class name="smaZer_testcases.Smartconfig">
         <methods>
           <include name="afterMethod"/>
-          <include name="Smartconfig_pairing"/>
           <include name="afterTest"/>
+          <include name="Smartconfig_pairing"/>
           <include name="startTestCase"/>
           <include name="afterSuite"/>
           <include name="beforeTest"/>
@@ -15,6 +15,42 @@
           <include name="beforeSuite"/>
         </methods>
       </class> <!-- smaZer_testcases.Smartconfig -->
+      <class name="smaZer_testcases.Ble_with_router">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="afterTest"/>
+          <include name="startTestCase"/>
+          <include name="afterSuite"/>
+          <include name="Blewithrouter_pairing"/>
+          <include name="beforeTest"/>
+          <include name="beforeMethod"/>
+          <include name="beforeSuite"/>
+        </methods>
+      </class> <!-- smaZer_testcases.Ble_with_router -->
+      <class name="smaZer_testcases.Ble_without_router">
+        <methods>
+          <include name="startTestCase"/>
+          <include name="Blewithoutrouter_pairing"/>
+          <include name="afterMethod"/>
+          <include name="afterTest"/>
+          <include name="afterSuite"/>
+          <include name="beforeTest"/>
+          <include name="beforeMethod"/>
+          <include name="beforeSuite"/>
+        </methods>
+      </class> <!-- smaZer_testcases.Ble_without_router -->
+      <class name="smaZer_testcases.Before_pairing">
+        <methods>
+          <include name="afterMethod"/>
+          <include name="afterTest"/>
+          <include name="homePageUICheck"/>
+          <include name="startTestCase"/>
+          <include name="afterSuite"/>
+          <include name="beforeTest"/>
+          <include name="beforeMethod"/>
+          <include name="beforeSuite"/>
+        </methods>
+      </class> <!-- smaZer_testcases.Before_pairing -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [End_to_End_smaZer] -->

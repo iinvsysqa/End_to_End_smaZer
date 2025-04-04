@@ -44,7 +44,7 @@ public class Ble_without_router extends MobileAppWrappers {
 		//check for language selection 
 		//pair with device try to del account and check for popup and try to remove device and try to del acnt and check add device page .
 
-		testDescription = "End to End functionality check of Ble without router pairing ";
+		testDescription = "Ble_without_router";
 	}
 
 
@@ -142,8 +142,9 @@ public class Ble_without_router extends MobileAppWrappers {
 		homepage.backnavigation();
 		devicemenupage.checkDurationforOnDefautvalue_devicesettings();
 		homepage.backnavigation();
-		devicemenupage.checkEnergySavingDefautvalue_devicesettings();
-		homepage.backnavigation();
+		devicemenupage.checkLEDquitemodeDefautvalue_devicesettings();
+//		devicemenupage.checkEnergySavingDefautvalue_devicesettings();
+//		homepage.backnavigation();
 		devicemenupage.clickResetDeviceButton();
 		devicemenupage.clickcancel();
 		devicemenupage.ClickaddrouterButton(1);

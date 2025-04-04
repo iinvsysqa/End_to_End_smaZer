@@ -84,11 +84,16 @@ public class Schedularpage extends GenericWrappers {
 	@FindBy(xpath = "//*[@resource-id='Device_BackIcon']")
 	private WebElement backButton;
 
-	@FindBy(xpath = "//android.widget.TextView[@text=\"geezer007_1\"]")
-	private WebElement userName;
+//	@FindBy(xpath = "//android.widget.TextView[@text=\"geezer007_1\"]")
+//	private WebElement userName;
+	
 	@FindBy(xpath = "//android.widget.TextView[@text=\" There are no schedules available from other users.\"]")
 	private WebElement placeholdeofSchedulepage;
 
+	private WebElement devicenameDeviceSettingsPage(String username) {
+		return driver.findElement(By.xpath("//android.widget.TextView[@text='"+username+"']"));
+		
+	}
 	public String scheduleDeletedtoast = loadProp("thisScheduleHasBeenDeleted");
 
 //	com.iinvsys.szephyr:id/ScrollPicker_Hours
@@ -411,8 +416,8 @@ public class Schedularpage extends GenericWrappers {
 	public void backToHomepage() {
 
 		clickbyXpath(backButton, "back button");
-		verifyTextContainsByXpath(userName, loadProp("USERNAMEINAPP"), "DeviceName");
-
+//		verifyTextContainsByXpath(userName, loadProp("USERNAMEINAPP"), "DeviceName");
+		verifyTextContainsByXpath(devicenameDeviceSettingsPage(loadProp("USERNAMEINAPP")), loadProp("USERNAME"), "Dropdown of device name");
 	}
 
 	public void swipeElement(String columnXPath, boolean forward) {

@@ -2,6 +2,7 @@ package pages;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +20,8 @@ import wrappers.GenericWrappers;
 public class DeviceMenuPage extends GenericWrappers{
 
 	private AndroidDriver driver;
+	public String quiteLedEnabled = loadProp("QuietModeEnabled");
+	public String quiteLedDisabled = loadProp("QuietModeDisabled");
 
 	// Locate all elements on the page
 
@@ -238,8 +241,8 @@ public class DeviceMenuPage extends GenericWrappers{
 	@FindBy(xpath = "//*[@resource-id='Add_Devices_ButtonText']")
 	private WebElement addDeviceButton;
 	
-	@FindBy(xpath = "//android.widget.TextView[@text=\"geezer007_1\"]")
-	private WebElement devicenameDeviceSettingsPage;
+//	@FindBy(xpath = "//android.widget.TextView[@text=\"geezer007_1\"]")
+//	private WebElement ;
 	
 	@FindBy(xpath = "//*[@resource-id='lowInputthreshold']")
 	private WebElement thresholdValueLowInput;
@@ -251,6 +254,17 @@ public class DeviceMenuPage extends GenericWrappers{
 	@FindBy(xpath = "//android.widget.EditText[@text=\"20\"]")
 	private WebElement defaultMin_Devicesettings;
 	
+	@FindBy(xpath = "//android.widget.Toast[@text=\"Quiet mode enabled\"]")
+	private WebElement quitemodeenabletoast;
+	@FindBy(xpath = "//android.widget.Toast[@text=\"Quiet mode disabled\"]")
+	private WebElement quitemodedisabletoast;
+	@FindBy(xpath = "//*[@resource-id='settingDevice_toggle_switch']")
+	private WebElement LedToggleSwitch;
+	
+	private WebElement devicenameDeviceSettingsPage(String username) {
+		return driver.findElement(By.xpath("//android.widget.TextView[@text='"+username+"']"));
+		
+	}
 	
 	public DeviceMenuPage(AndroidDriver driver) {
 		this.driver = driver;
@@ -583,8 +597,9 @@ clickbyXpath(lowvoltageconfiguration, "LowVoltage configuration");
 		}
 		
 		public void checkUsername_devicesettings(String content) {
-			verifyTextContainsByXpath(devicenameDeviceSettingsPage, loadProp("USERNAMEINAPP"), content);
+			verifyTextContainsByXpath(devicenameDeviceSettingsPage(loadProp("USERNAMEINAPP")), loadProp("USERNAME"), content);
 		}
+		
 		public void checkLowVoltDefautvalue_devicesettings() {
 			clickLowVoltagebutton();
 			clickbyXpath(EnableToogleSwtich, "Toggle switch");
@@ -614,9 +629,24 @@ clickbyXpath(lowvoltageconfiguration, "LowVoltage configuration");
 			clickbyXpath(EnableToogleSwtich, "Toggle switch");
 			
 		}
-		public void checkLEDquitemodeDefautvalue_devicesettings() {
+public void checkQuietmodedisabledtoast() {
 			
+			verifyTextContainsByXpath(quitemodedisabletoast,quiteLedDisabled ,
+					"Device details updated successfully! toast");
 		}
+		public void checkQuietmodeenabledtoast() {
+			
+			verifyTextContainsByXpath(quitemodeenabletoast,quiteLedEnabled ,
+					"Device details updated successfully! toast");
+		}
+		public void checkLEDquitemodeDefautvalue_devicesettings() {
+//			clickEnergySavingModebutton();
+			clickbyXpath(LedToggleSwitch, "Toggle switch");
+			checkQuietmodeenabledtoast();
+			clickbyXpath(LedToggleSwitch, "Toggle switch");
+			checkQuietmodedisabledtoast();
+		}
+
 		public void clickcancel() {
 			clickbyXpath(ClickCancelWifi, "cancelbutton");
 		}
